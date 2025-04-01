@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cn5et0ijlak7a" path="res://graphics/objects/lid.png" id="4_5fijr"]
 
 [node name="Toilet" instance=ExtResource("1_4e3n1")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("2_uhng0")
 
 [node name="BaseSprite" parent="." index="0"]
