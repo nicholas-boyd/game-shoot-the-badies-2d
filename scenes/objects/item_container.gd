@@ -1,7 +1,5 @@
 extends StaticBody2D
 class_name ItemContainer
 
-
-# Called when the node enters the scene tree for the first time.
-func hit():
-	print("hit object")
+@onready var current_direction: Vector2 = Vector2.DOWN.rotated(rotation)
+signal open(pos, dir)
