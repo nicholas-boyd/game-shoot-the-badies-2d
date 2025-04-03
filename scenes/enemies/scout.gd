@@ -15,6 +15,8 @@ func hit():
 		vulnerable = false
 		$Timers/HitTimer.start()
 		$Sprite2D.material.set_shader_parameter("progress",1)
+		$HitSound.global_position = global_position
+		$HitSound.play()
 	if health <= 0:
 		queue_free()
 
@@ -29,6 +31,7 @@ func _process(_delta):
 			laser.emit(pos, direction)
 			can_laser = false
 			$Timers/LaserTimer.start()
+			print('scout shooting')
 
 func _on_attack_area_body_entered(_body):
 	player_nearby = true

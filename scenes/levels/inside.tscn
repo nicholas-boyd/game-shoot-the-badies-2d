@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://prf3c3y5xg60"]
+[gd_scene load_steps=36 format=3 uid="uid://prf3c3y5xg60"]
 
 [ext_resource type="PackedScene" uid="uid://darwfwok1y8dp" path="res://scenes/levels/level.tscn" id="1_qjqql"]
 [ext_resource type="Texture2D" uid="uid://ce8if0ihtopl1" path="res://graphics/ground/dirt.png" id="2_2ktdc"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://ct41v2ht24x0y" path="res://graphics/objects/infestation/spikes.png" id="29_3dia2"]
 [ext_resource type="Texture2D" uid="uid://ji7va37eak3q" path="res://graphics/objects/infestation/large.png" id="30_0vrx7"]
 [ext_resource type="Texture2D" uid="uid://cv0f22gi8vjyl" path="res://graphics/objects/infestation/small.png" id="31_kqu8l"]
+[ext_resource type="PackedScene" uid="uid://b2g4h863yfoys" path="res://scenes/enemies/enemy_drone.tscn" id="32_mo11y"]
+[ext_resource type="PackedScene" uid="uid://c1pof1n8k1p37" path="res://scenes/enemies/bug.tscn" id="33_lgteg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jfar"]
 size = Vector2(373, 182)
@@ -333,6 +335,24 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGateArea" index="0"]
 position = Vector2(-197, 1352)
 shape = SubResource("RectangleShape2D_8jfar")
+
+[node name="EnemyDrone" parent="Enemies" index="0" instance=ExtResource("32_mo11y")]
+position = Vector2(-636, -97)
+
+[node name="EnemyDrone2" parent="Enemies" index="1" instance=ExtResource("32_mo11y")]
+position = Vector2(-468, -319)
+
+[node name="EnemyDrone3" parent="Enemies" index="2" instance=ExtResource("32_mo11y")]
+position = Vector2(-391, -20)
+
+[node name="Bug" parent="Enemies" index="3" instance=ExtResource("33_lgteg")]
+position = Vector2(432, -1105)
+
+[node name="Bug2" parent="Enemies" index="4" instance=ExtResource("33_lgteg")]
+position = Vector2(-679, -1126)
+
+[node name="Bug3" parent="Enemies" index="5" instance=ExtResource("33_lgteg")]
+position = Vector2(-124, -2015)
 
 [node name="Player" parent="." index="8"]
 position = Vector2(-216, 1168)

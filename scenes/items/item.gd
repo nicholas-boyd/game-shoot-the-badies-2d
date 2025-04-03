@@ -33,4 +33,7 @@ func _on_body_entered(_body):
 		Globals.laser_ammo += 5
 	elif type == 'grenade':
 		Globals.grenade_ammo += 1
+	$PickupSound.play()
+	$Sprite2D.hide()
+	await $PickupSound.finished
 	queue_free()

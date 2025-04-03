@@ -33,17 +33,20 @@ func stop_movement():
 	speed_multiplier = 0
 
 func hit():
-	if vulnerable:
+	if vulnerable and health > 0:
 		vulnerable = false
 		health -= 10
 		$HitTimer.start()
 		$DroneImage.material.set_shader_parameter("progress",1)
+		$Sounds/HitSound.global_position = global_position
+		$Sounds/HitSound.play()
 	if health <= 0:
+		$Sounds/ExplosionSound.global_position = global_position
 		$AnimationPlayer.play("explosion")
 		exploding = true
 
 
-func _on_notice_area_body_entered(body):
+func _on_notice_area_body_entered(_body):
 	active = true
 	var tween = create_tween()
 	tween.tween_property(self, "speed", max_speed, 6)

@@ -24,7 +24,6 @@ func _on_player_grenade_fired(pos, direction):
 	$UI.update_grenade_text()
 	
 func _on_enemy_laser(pos, direction):
-	print('shooting')
 	create_laser(pos, direction)
 
 func create_laser(pos, direction) -> void:

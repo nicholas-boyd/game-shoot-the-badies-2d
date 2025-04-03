@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://78p8ji0csaxc"]
+[gd_scene load_steps=7 format=3 uid="uid://78p8ji0csaxc"]
 
 [ext_resource type="Texture2D" uid="uid://wp2md0gxihcc" path="res://graphics/enemies/scout.png" id="1_3cjgg"]
 [ext_resource type="Script" path="res://scenes/enemies/scout.gd" id="1_t2fp4"]
 [ext_resource type="Material" uid="uid://dnu5vwljx2qia" path="res://scenes/enemies/on_hit.tres" id="2_hbp34"]
+[ext_resource type="AudioStream" uid="uid://cpborcvtloyda" path="res://audio/solid_impact.ogg" id="4_pc7xj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c6in6"]
 radius = 54.1479
@@ -12,7 +13,7 @@ radius = 927.019
 
 [node name="Scout" type="CharacterBody2D" groups=["Entities", "Scouts"]]
 collision_layer = 2
-collision_mask = 11
+collision_mask = 15
 script = ExtResource("1_t2fp4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -46,6 +47,9 @@ one_shot = true
 [node name="HitTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pc7xj")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

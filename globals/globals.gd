@@ -6,6 +6,7 @@ signal grenade_ammo_change
 
 var player_pos: Vector2
 var player_vulnerable: bool = true
+var player_hit_sound: AudioStreamPlayer2D
 
 var health = 50: 
 	set(value):
@@ -17,7 +18,8 @@ var health = 50:
 				health = value
 				player_vulnerable = false
 				player_invulnerable_timer()
-				health_change.emit()
+				player_hit_sound.play()
+		health_change.emit()
 		
 var laser_ammo = 20:
 	set(value):
@@ -32,3 +34,8 @@ var grenade_ammo = 5:
 func player_invulnerable_timer() -> void:
 	await get_tree().create_timer(0.5).timeout
 	player_vulnerable = true
+
+func _ready():
+	player_hit_sound = AudioStreamPlayer2D.new()
+	player_hit_sound.stream = load("res://audio/solid_impact.ogg")
+	add_child(player_hit_sound)

@@ -17,10 +17,8 @@ func fire():
 	tween.set_parallel(true)
 	tween.tween_property(gun_fire1, "modulate:a",0,randf_range(0.1,0.5))
 	tween.tween_property(gun_fire2, "modulate:a",0,randf_range(0.1,0.5))
-	
+	print('car firing')
 
-func _ready():
-	pass
 func _process(delta):
 	progress_ratio += 0.02 * delta
 	if player_near:
@@ -29,6 +27,7 @@ func _process(delta):
 
 func _on_notice_area_body_entered(_body):
 	player_near = true
+	print('player near to car')
 	$AnimationPlayer.play("laser_load")
 
 
@@ -37,7 +36,9 @@ func _on_notice_area_body_exited(_body):
 	$AnimationPlayer.pause()
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.set_property(line1, "width", 0, randf_range(0.1,0.5))
-	tween.set_property(line2, "width", 0, randf_range(0.1,0.5))
+	tween.tween_property(line1, "width", 0, randf_range(0.1,0.5))
+#	tween.set_property(line1, "width", 0, randf_range(0.1,0.5))
+	tween.tween_property(line2, "width", 0, randf_range(0.1,0.5))
+#	tween.set_property(line2, "width", 0, randf_range(0.1,0.5))
 	await tween.finished
 	$AnimationPlayer.stop()

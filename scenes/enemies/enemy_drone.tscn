@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2g4h863yfoys"]
+[gd_scene load_steps=13 format=3 uid="uid://b2g4h863yfoys"]
 
 [ext_resource type="Texture2D" uid="uid://cnjg6a1wyajhc" path="res://graphics/enemies/drone.png" id="1_hsdc6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy_drone.gd" id="1_m0b82"]
 [ext_resource type="Shader" path="res://scenes/enemies/enemy_drone.gdshader" id="2_2drjv"]
 [ext_resource type="Texture2D" uid="uid://crpmagej8g7wi" path="res://graphics/explosions/explosion_3.png" id="3_vq3qq"]
+[ext_resource type="AudioStream" uid="uid://cpborcvtloyda" path="res://audio/solid_impact.ogg" id="5_clfe1"]
+[ext_resource type="AudioStream" uid="uid://dvsj1xm27ub1u" path="res://audio/explosion.wav" id="6_yv3dr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rf02q"]
 shader = ExtResource("2_2drjv")
@@ -15,6 +17,21 @@ radius = 73.0616
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ylks"]
 radius = 873.186
+
+[sub_resource type="Animation" id="Animation_l67gn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [23]
+}
 
 [sub_resource type="Animation" id="Animation_f0but"]
 resource_name = "explosion"
@@ -84,21 +101,21 @@ tracks/4/keys = {
 "method": &"stop_movement"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_l67gn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Explosion:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [23]
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sounds/ExplosionSound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_yv3dr")
+}],
+"times": PackedFloat32Array(0)
 }
+tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kftwd"]
 _data = {
@@ -140,6 +157,14 @@ frame = 23
 libraries = {
 "": SubResource("AnimationLibrary_kftwd")
 }
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_clfe1")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_yv3dr")
 
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

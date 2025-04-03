@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c1pof1n8k1p37"]
+[gd_scene load_steps=43 format=3 uid="uid://c1pof1n8k1p37"]
 
 [ext_resource type="Script" path="res://scenes/enemies/bug.gd" id="1_dn8p1"]
 [ext_resource type="Texture2D" uid="uid://bagkg132wp00y" path="res://graphics/enemies/bug/attack/00010.png" id="1_jyc32"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://b06gadn4codo3" path="res://graphics/enemies/bug/walk/00007.png" id="29_syl7y"]
 [ext_resource type="Texture2D" uid="uid://but6jv5cjgksu" path="res://graphics/enemies/bug/walk/00008.png" id="30_scrn5"]
 [ext_resource type="Texture2D" uid="uid://dgjaqrcxo8ua3" path="res://graphics/explosions/grunge.png" id="33_05qxa"]
+[ext_resource type="AudioStream" uid="uid://bfsog3381lei3" path="res://audio/organic_impact.mp3" id="34_kkq6w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_022h8"]
 animations = [{
@@ -178,7 +179,7 @@ anim_offset_max = 1.0
 
 [node name="Bug" type="CharacterBody2D" groups=["Bugs", "Entities"]]
 collision_layer = 2
-collision_mask = 11
+collision_mask = 15
 script = ExtResource("1_dn8p1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -224,6 +225,9 @@ process_material = SubResource("ParticleProcessMaterial_803qp")
 texture = ExtResource("33_05qxa")
 lifetime = 0.5
 one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("34_kkq6w")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
